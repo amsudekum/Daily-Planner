@@ -2,6 +2,7 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 let currentDate = dayjs();
+let currentHour = dayjs().hour();
 let hour9 = $('#hour-9 > textarea');
 let hour10 = $('#hour-10 > textarea');
 let hour11 = $('#hour-11 > textarea');
@@ -12,6 +13,8 @@ let hour3 = $('#hour-3 > textarea');
 let hour4 = $('#hour-4 > textarea');
 let hour5 = $('#hour-5 > textarea');
 
+
+console.log(currentHour)
 
 $('#currentDay').text(currentDate.format('MMM D, YYYY'));
 
@@ -27,6 +30,15 @@ $('document').ready(() => {
     event.preventDefault()
     saveTask();
   });
+  checkTime(9);
+  checkTime(10);
+  checkTime(11);
+  checkTime(12);
+  checkTime(1);
+  checkTime(2);
+  checkTime(3);
+  checkTime(4);
+  checkTime(5);
 
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
@@ -43,9 +55,33 @@ $('document').ready(() => {
   // TODO: Add code to display the current date in the header of the page.
 });
 
-function checkTime() {
-  //compare the timed schedule block to CurrentTime and change class accordingly. If schedule is less than currentTime, change color to grey, etc.  
-}
+function checkTime(target) {
+    // $('.time-block').each(function () {
+
+    let targetEl = $('#hour-' + target)
+    if (currentHour == target) {
+      targetEl.removeClass('neutral')
+      targetEl.removeClass('past')
+      targetEl.removeClass('future')
+      targetEl.addClass('present');
+    } else if (currentHour < target) {
+      targetEl.removeClass('neutral')
+      targetEl.removeClass('present');
+      targetEl.removeClass('past')
+      targetEl.addClass('future');
+    } else if (currentHour > target) {
+      targetEl.removeClass('future');
+      targetEl.removeClass('neutral')
+      targetEl.removeClass('present')
+      targetEl.addClass('past')
+      
+    } 
+
+    console.log(targetEl)
+  }; 
+// }
+
+
 
 function saveTask() {
   localStorage.setItem("hours", getUserInput());
