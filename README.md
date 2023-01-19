@@ -9,6 +9,7 @@ This application will allow you to better organize your day with an easy to read
 ## Installation
  
 To visit the updated application, follow this link.
+https://amsudekum.github.io/Daily-Planner/
 
  
 ## Credits
